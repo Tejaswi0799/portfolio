@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tejaswi Gunnala — IT Infrastructure &amp; Network Security Analyst</title>
+<title>Tejaswi Gunnala — Network Security &amp; Infrastructure Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -19,6 +19,10 @@
     --up:#3ECF8E;
     --degraded:#F5B942;
     --down:#F16767;
+    --purple:#A78BFA;
+    --teal:#2DD4BF;
+    --pink:#F472B6;
+    --orange:#FB923C;
     --display: 'Space Grotesk', sans-serif;
     --body: 'IBM Plex Sans', sans-serif;
     --mono: 'IBM Plex Mono', monospace;
@@ -38,26 +42,19 @@
   .wrap{ max-width:1040px; margin:0 auto; padding:0 32px; }
   @media (max-width:640px){ .wrap{ padding:0 20px; } }
 
-  /* ---------- top status bar ---------- */
   .statusbar{
     border-bottom:1px solid var(--line);
     background:rgba(10,15,28,0.85);
     backdrop-filter: blur(8px);
     position:sticky; top:0; z-index:50;
   }
-  .statusbar .wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    height:56px;
-  }
-  .statusbar .mark{
-    font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:0.02em;
-  }
+  .statusbar .wrap{ display:flex; align-items:center; justify-content:space-between; height:56px; }
+  .statusbar .mark{ font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:0.02em; }
   .statusbar nav{ display:flex; gap:28px; font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-dim);}
   .statusbar nav a{ text-decoration:none; transition:color .15s; }
   .statusbar nav a:hover{ color:var(--text); }
   @media (max-width:640px){ .statusbar nav{ display:none; } }
 
-  /* ---------- chip ---------- */
   .chip{
     display:inline-flex; align-items:center; gap:6px;
     font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.06em;
@@ -70,91 +67,84 @@
   .chip.degraded{ color:var(--degraded); border-color:rgba(245,185,66,0.35); background:rgba(245,185,66,0.08); }
   .chip.degraded .dot{ background:var(--degraded); box-shadow:0 0 8px var(--degraded); }
 
-  /* ---------- hero ---------- */
-  .hero{ padding:88px 0 56px; border-bottom:1px solid var(--line); }
+  .hero{ padding:88px 0 56px; border-bottom:1px solid var(--line); position:relative; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; top:-160px; right:-120px; width:520px; height:520px;
+    background: radial-gradient(circle, rgba(91,157,249,0.16), rgba(45,212,191,0.08) 45%, transparent 70%);
+    filter: blur(10px); pointer-events:none;
+  }
+  .hero .wrap{ position:relative; z-index:1; }
   .hero .kicker{ font-family:var(--mono); font-size:12px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:18px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
   .hero .kicker > *{ margin-right:12px; }
   .hero h1{
     font-family:var(--display); font-weight:700;
-    font-size:clamp(32px, 5vw, 52px);
-    line-height:1.08; letter-spacing:-0.01em;
-    max-width:900px;
+    font-size:clamp(30px, 4.6vw, 48px);
+    line-height:1.1; letter-spacing:-0.01em;
+    max-width:920px;
   }
-  .hero h1 .accent{ color:var(--brand); }
-  .hero p.sub{
-    margin-top:22px; max-width:640px; color:var(--text-dim); font-size:16.5px;
-  }
-  .hero .meta{
-    margin-top:32px; display:flex; gap:22px; flex-wrap:wrap;
-    font-family:var(--mono); font-size:12.5px; color:var(--text-dim);
-  }
+  .hero h1 .accent{ background: linear-gradient(90deg, var(--brand), var(--teal)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p.sub{ margin-top:22px; max-width:660px; color:var(--text-dim); font-size:16px; }
+  .hero .meta{ margin-top:32px; display:flex; gap:22px; flex-wrap:wrap; font-family:var(--mono); font-size:12.5px; color:var(--text-dim); }
   .hero .meta div{ margin-right:22px; }
   .hero .meta span{ color:var(--text); }
   .hero .cta-row{ margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; }
-  .btn{
-    font-family:var(--body); font-weight:500; font-size:14px;
-    padding:11px 20px; border-radius:8px; text-decoration:none;
-    display:inline-block; transition: transform .15s ease, border-color .15s ease;
-  }
+  .btn{ font-family:var(--body); font-weight:500; font-size:14px; padding:11px 20px; border-radius:8px; text-decoration:none; display:inline-block; transition: transform .15s ease, border-color .15s ease; }
   .btn.primary{ background:var(--brand); color:#06101F; }
   .btn.primary:hover{ transform:translateY(-1px); }
   .btn.ghost{ border:1px solid var(--line); color:var(--text); }
   .btn.ghost:hover{ border-color:rgba(232,237,244,0.28); }
 
-  /* ---------- data strip ---------- */
   .strip{ border-bottom:1px solid var(--line); padding:26px 0; }
   .strip .wrap{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
   @media (max-width:640px){ .strip .wrap{ grid-template-columns:repeat(2,1fr); } }
   .stat .num{ font-family:var(--display); font-size:26px; font-weight:600; color:var(--text); }
+  .stat:nth-child(1) .num{ color:var(--brand); }
+  .stat:nth-child(2) .num{ color:var(--up); }
+  .stat:nth-child(3) .num{ color:var(--orange); }
+  .stat:nth-child(4) .num{ color:var(--purple); }
   .stat .label{ font-family:var(--mono); font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px; }
 
-  /* ---------- section heading ---------- */
   section{ padding:72px 0; border-bottom:1px solid var(--line); }
   .sec-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:40px; flex-wrap:wrap; gap:10px; }
   .sec-head h2{ font-family:var(--display); font-size:26px; font-weight:600; }
   .sec-head .note{ font-family:var(--mono); font-size:12px; color:var(--text-dim); }
 
-  /* ---------- experience cards ---------- */
   .cards{ display:flex; flex-direction:column; gap:18px; }
-  .card{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:26px 28px;
-    transition:border-color .18s ease, background .18s ease;
-  }
-  .card:hover{ border-color:rgba(91,157,249,0.4); background:var(--panel-raised); }
+  .card{ background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:12px; padding:26px 28px; transition:border-color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease; }
+  .card:hover{ border-color:rgba(91,157,249,0.4); border-left-color:var(--brand); background:var(--panel-raised); transform:translateY(-2px); box-shadow:0 8px 24px rgba(91,157,249,0.08); }
+  .card.c-teal{ border-left-color:var(--teal); }
+  .card.c-teal:hover{ box-shadow:0 8px 24px rgba(45,212,191,0.12); }
+  .card.c-purple{ border-left-color:var(--purple); }
+  .card.c-purple:hover{ box-shadow:0 8px 24px rgba(167,139,250,0.12); }
+  .card.c-pink{ border-left-color:var(--pink); }
+  .card.c-pink:hover{ box-shadow:0 8px 24px rgba(244,114,182,0.12); }
+  .card.c-orange{ border-left-color:var(--orange); }
+  .card.c-orange:hover{ box-shadow:0 8px 24px rgba(251,146,60,0.12); }
   .card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; }
   .card h3{ font-family:var(--display); font-size:19px; font-weight:600; }
   .card .role{ font-family:var(--mono); font-size:11.5px; color:var(--text-dim); margin-top:4px; }
-  .card ul.bullets{ margin-top:16px; list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .card ul.bullets{ margin-top:16px; list-style:none; display:flex; flex-direction:column; gap:10px; }
   .card ul.bullets li{ font-size:14px; color:var(--text-dim); padding-left:16px; position:relative; }
   .card ul.bullets li::before{ content:"›"; position:absolute; left:0; color:var(--brand); font-family:var(--mono); }
+  .card ul.bullets li .metric{ color:var(--text); font-weight:600; font-family:var(--mono); }
 
-  /* ---------- skills ---------- */
   .skill-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px 40px; }
   @media (max-width:640px){ .skill-grid{ grid-template-columns:1fr; } }
   .skill-group .g-label{ font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--brand); margin-bottom:10px; }
   .skill-group .tags{ display:flex; flex-wrap:wrap; gap:8px; }
   .tag{ font-family:var(--mono); font-size:11px; color:var(--text-dim); border:1px solid var(--line); padding:3px 9px; border-radius:100px; }
 
-  /* ---------- certifications ---------- */
-  .cert-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
-  @media (max-width:640px){ .cert-grid{ grid-template-columns:1fr; } }
-  .cert{
-    border:1px solid var(--line); border-radius:10px; padding:16px 18px;
-    font-size:14px; display:flex; align-items:center; gap:10px;
-  }
+  .cert-grid{ display:flex; flex-direction:column; gap:12px; }
+  .cert{ border:1px solid var(--line); border-radius:10px; padding:16px 18px; font-size:14px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .cert .name{ display:flex; align-items:center; gap:10px; }
   .cert .dot{ width:6px; height:6px; border-radius:50%; background:var(--brand); flex-shrink:0; }
 
-  /* ---------- education ---------- */
   .edu-row{ display:flex; justify-content:space-between; padding:16px 0; border-top:1px solid var(--line); flex-wrap:wrap; gap:6px; }
   .edu-row:first-child{ border-top:none; }
   .edu-row .deg{ font-weight:600; font-size:15px; }
   .edu-row .school{ color:var(--text-dim); font-size:13.5px; }
   .edu-row .yr{ font-family:var(--mono); font-size:12.5px; color:var(--text-dim); }
 
-  /* ---------- footer ---------- */
   footer{ padding:56px 0 72px; }
   footer .wrap{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
   footer h2{ font-family:var(--display); font-size:26px; font-weight:600; max-width:440px; }
@@ -172,6 +162,7 @@
       <div class="mark">TG // 07</div>
       <nav>
         <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#certifications">Certifications</a>
         <a href="#contact">Contact</a>
@@ -182,13 +173,13 @@
   <div class="hero">
     <div class="wrap">
       <div class="kicker">
-        <span class="chip up"><span class="dot"></span>Network status: Available</span>
-        <span>Columbus, OH · STEM OPT</span>
+        <span class="chip up"><span class="dot"></span>🟢 Network status: Available</span>
+        <span>📍 Columbus, OH · STEM OPT</span>
       </div>
-      <h1>IT Infrastructure &amp; Network Security Analyst keeping enterprise operations <span class="accent">online, secure, and compliant.</span></h1>
-      <p class="sub">Experience supporting enterprise IT operations, network infrastructure, incident management, and security operations — skilled in ServiceNow, ITIL, firewall monitoring, IAM, VPN support, AI-assisted IT operations, and infrastructure automation. Seeking Network Infrastructure, NOC, or Network Security Analyst roles.</p>
+      <h1>Network Security &amp; Infrastructure Engineer keeping enterprise perimeters <span class="accent">monitored, protected, and compliant.</span></h1>
+      <p class="sub">3+ years directing 24/7 eyes-on-glass monitoring, technical incident handling, and perimeter protection across enterprise architectures — managing multi-vendor firewall environments (Palo Alto, Fortinet), Panorama configurations, and IAM at scale, with a track record of resolving P1/P2 incidents while holding strict SLA compliance.</p>
       <div class="meta">
-        <div><span>Currently:</span> ReliaQuest, Tampa, FL</div>
+        <div><span>Currently:</span> ReliaQuest, Tampa, FL (Remote)</div>
         <div><span>Prior:</span> HCL Technologies, Hyderabad, India</div>
         <div><span>MS Info Systems</span> — Trine University</div>
       </div>
@@ -201,17 +192,17 @@
 
   <div class="strip">
     <div class="wrap">
-      <div class="stat"><div class="num">2</div><div class="label">Enterprise employers</div></div>
-      <div class="stat"><div class="num">6</div><div class="label">Core skill domains</div></div>
-      <div class="stat"><div class="num">5</div><div class="label">Certifications</div></div>
-      <div class="stat"><div class="num">1</div><div class="label">MS, Information Systems</div></div>
+      <div class="stat"><div class="num">98.5%</div><div class="label">🎯 SLA standard maintained</div></div>
+      <div class="stat"><div class="num">500+</div><div class="label">🔐 Remote users onboarded to VPN</div></div>
+      <div class="stat"><div class="num">40+</div><div class="label">🎫 Daily tickets managed (L2)</div></div>
+      <div class="stat"><div class="num">3+</div><div class="label">🛡️ Years in security operations</div></div>
     </div>
   </div>
 
   <section id="experience">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Professional experience</h2>
+        <h2>💼 Professional experience</h2>
       </div>
       <div class="cards">
 
@@ -219,34 +210,120 @@
           <div class="card-top">
             <div>
               <h3>IT Infrastructure &amp; Network Security Analyst</h3>
-              <div class="role">ReliaQuest · Tampa, FL · Aug 2024 – Present</div>
+              <div class="role">ReliaQuest · Tampa, FL (Remote from Columbus, OH) · Aug 2024 – Present</div>
             </div>
             <span class="chip up"><span class="dot"></span>Current</span>
           </div>
           <ul class="bullets">
-            <li>Managed ITIL-based incident response and ServiceNow ticket workflows, ensuring SLA compliance and timely resolution of enterprise infrastructure incidents.</li>
-            <li>Leveraged AI-assisted monitoring and AIOps platforms to identify network anomalies, prioritize incidents, and improve operational visibility.</li>
-            <li>Supported Identity &amp; Access Management (IAM) by provisioning user access, MFA, VPN connectivity, and authentication requests.</li>
-            <li>Assisted with infrastructure automation using Ansible, Terraform, and NetBox to streamline configuration management processes.</li>
-            <li>Monitored enterprise network performance using Cisco ThousandEyes, Grafana, and Prometheus to support root cause analysis and performance optimization.</li>
-            <li>Collaborated with infrastructure and security teams on vulnerability remediation, change management, and technical documentation.</li>
+            <li>Executed 24/7 eyes-on-glass enterprise monitoring over global corporate applications, identifying, prioritizing, and escalating critical routing and security incidents to maintain a <span class="metric">98.5% SLA</span> standard.</li>
+            <li>Orchestrated end-to-end incident handling for production incidents within ServiceNow, ensuring zero-loss asset communication and smooth 24/7 rotational shift handoffs following ITIL best practices.</li>
+            <li>Managed enterprise IAM through Active Directory and Azure AD, enforcing secure MFA rollouts and onboarding <span class="metric">500+ remote personnel</span> onto secure Cisco VPN clusters.</li>
+            <li>Engineered custom monitoring dashboards using Splunk and Grafana to isolate physical layer drops, analyze network anomalies, and minimize operational downtime.</li>
+            <li>Supported deployment optimization and configuration tracking by maintaining unified asset mapping within NetBox IPAM, plus infrastructure automation via Ansible and Terraform.</li>
           </ul>
         </div>
 
         <div class="card">
           <div class="card-top">
             <div>
-              <h3>Network Security Support Analyst</h3>
+              <h3>Network Security Infrastructure Engineer (L2 Support)</h3>
               <div class="role">HCL Technologies · Hyderabad, India · Oct 2021 – Aug 2022</div>
             </div>
             <span class="chip degraded"><span class="dot"></span>Prior role</span>
           </div>
           <ul class="bullets">
-            <li>Monitored Palo Alto and Fortinet firewall status and analyzed network traffic anomalies.</li>
-            <li>Administered ServiceNow for incident tickets, user access requests, and SLA tracking.</li>
-            <li>Provisioned secure access tokens and supported Cisco VPN connectivity.</li>
-            <li>Collaborated with infrastructure teams to troubleshoot Tier 1 network connectivity issues.</li>
+            <li>Executed daily firewall rule provisioning, modifications, configuration cleanup, and rule optimization across production Palo Alto and Fortinet environments.</li>
+            <li>Utilized AlgoSec to conduct automated impact analysis, firewall policy analysis, and risk simulation checks prior to scheduled change management requests.</li>
+            <li>Investigated and resolved escalations involving Site-to-Site IPSec tunnels, security policy failures, and localized routing conflicts.</li>
+            <li>Managed an active queue of <span class="metric">40+ Tier 2</span> service requests, infrastructure changes, and technical tickets daily within ServiceNow.</li>
+            <li>Interfaced directly with Palo Alto TAC and vendor engineering teams to accelerate firmware upgrades, patches, and vulnerability remediation.</li>
+            <li>Partnered with infrastructure groups on packet capture diagnostics to isolate Tier 1 connectivity conflicts, routing faults, and physical switch port issues.</li>
           </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>🚀 Projects</h2>
+      </div>
+      <div class="cards">
+
+        <div class="card c-teal">
+          <div class="card-top">
+            <div>
+              <h3>Cloud Release Validation &amp; Defect Containment Framework</h3>
+              <div class="role">Release Engineering / QA Automation</div>
+            </div>
+            <span class="chip up"><span class="dot"></span>Shipped</span>
+          </div>
+          <ul class="bullets">
+            <li>Architected a layered release-validation model defining functional API and streamlined test entry/exit criteria, increasing pre-production defect capture by <span class="metric">33%</span> and cutting late-cycle release fixes by <span class="metric">29%</span> across parallel sprint tracks.</li>
+            <li>Established CI-triggered regression and API contract enforcement, enabling <span class="metric">38% faster</span> release certification and sustaining zero rollback across <span class="metric">15+ production deployments</span>.</li>
+          </ul>
+          <div class="tags" style="margin-top:16px;">
+            <span class="tag">Playwright</span><span class="tag">Postman</span><span class="tag">Azure DevOps</span><span class="tag">SQL</span>
+          </div>
+        </div>
+
+        <div class="card c-purple">
+          <div class="card-top">
+            <div>
+              <h3>IoT-Based Smart Device Testing Automation</h3>
+              <div class="role">Mobile &amp; API Test Automation</div>
+            </div>
+            <span class="chip up"><span class="dot"></span>Shipped</span>
+          </div>
+          <ul class="bullets">
+            <li>Led an end-to-end mobile and API automation framework for IoT smart home devices, automating Android testing with Appium and backend validation using RestAssured, increasing enabled coverage by <span class="metric">35%</span>.</li>
+            <li>Engineered BDD-based validation scenarios simulating real-world device usage and real-time sensor data flow, executing SQL-based backend checks on cloud databases and reducing manual verification effort by <span class="metric">30%</span>.</li>
+          </ul>
+          <div class="tags" style="margin-top:16px;">
+            <span class="tag">Appium</span><span class="tag">RestAssured</span><span class="tag">Cucumber (BDD)</span><span class="tag">SQL</span>
+          </div>
+        </div>
+
+        <div class="card c-pink">
+          <div class="card-top">
+            <div>
+              <h3>Smart Cane for Visually Impaired</h3>
+              <div class="role">Embedded Systems Project</div>
+            </div>
+            <span class="chip up"><span class="dot"></span>Shipped</span>
+          </div>
+          <p style="margin-top:14px; font-size:14px; color:var(--text-dim); max-width:640px;">An assistive smart cane solution designed to improve navigation support for visually impaired users using sensor-based obstacle detection.</p>
+          <ul class="bullets">
+            <li>Integrated ultrasonic sensors for real-time obstacle detection.</li>
+            <li>Implemented audio alert mechanisms for navigation assistance.</li>
+            <li>Enhanced mobility support through real-time sensor feedback.</li>
+            <li>Focused on accessibility, safety, and responsive system behavior.</li>
+          </ul>
+          <div class="tags" style="margin-top:16px;">
+            <span class="tag">Arduino</span><span class="tag">Ultrasonic Sensors</span><span class="tag">IoT</span><span class="tag">Python</span>
+          </div>
+        </div>
+
+        <div class="card c-orange">
+          <div class="card-top">
+            <div>
+              <h3>Smart Home Automation System</h3>
+              <div class="role">IoT Project</div>
+            </div>
+            <span class="chip up"><span class="dot"></span>Shipped</span>
+          </div>
+          <p style="margin-top:14px; font-size:14px; color:var(--text-dim); max-width:640px;">An IoT-based smart home automation system enabling remote control of lighting, temperature, and security devices through a mobile-connected platform.</p>
+          <ul class="bullets">
+            <li>Integrated Arduino and Python-based automation workflows.</li>
+            <li>Used Firebase for real-time communication and monitoring.</li>
+            <li>Implemented sensor-based controls to improve energy efficiency and security.</li>
+            <li>Enabled real-time remote device management through mobile integration.</li>
+          </ul>
+          <div class="tags" style="margin-top:16px;">
+            <span class="tag">Arduino</span><span class="tag">IoT</span><span class="tag">Python</span><span class="tag">Firebase</span>
+          </div>
         </div>
 
       </div>
@@ -256,43 +333,43 @@
   <section id="skills">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Core skills</h2>
+        <h2>🧰 Technical skills matrix</h2>
       </div>
       <div class="skill-grid">
         <div class="skill-group">
-          <div class="g-label">Networking</div>
+          <div class="g-label" style="color:var(--brand);">Firewall Operations</div>
           <div class="tags">
-            <span class="tag">TCP/IP</span><span class="tag">DNS</span><span class="tag">DHCP</span><span class="tag">LAN/WAN</span><span class="tag">VLAN</span><span class="tag">VPN</span><span class="tag">Routing &amp; Switching</span><span class="tag">Network Monitoring</span>
+            <span class="tag">Palo Alto (PA / VM-Series)</span><span class="tag">Panorama</span><span class="tag">Fortinet FortiGate</span><span class="tag">Policy Deployment</span><span class="tag">Health Monitoring</span>
           </div>
         </div>
         <div class="skill-group">
-          <div class="g-label">Network Security</div>
+          <div class="g-label" style="color:var(--teal);">Security Rules &amp; Optimization</div>
           <div class="tags">
-            <span class="tag">Palo Alto</span><span class="tag">Fortinet</span><span class="tag">Cisco VPN</span><span class="tag">Firewall Monitoring</span><span class="tag">IAM</span><span class="tag">MFA</span><span class="tag">Zero Trust</span>
+            <span class="tag">Rule Modifications</span><span class="tag">Config Cleanup</span><span class="tag">Security Zone Mapping</span><span class="tag">NAT Policy Design</span><span class="tag">ACLs</span>
           </div>
         </div>
         <div class="skill-group">
-          <div class="g-label">IT Operations</div>
+          <div class="g-label" style="color:var(--purple);">VPN Technologies</div>
           <div class="tags">
-            <span class="tag">ServiceNow</span><span class="tag">ITIL</span><span class="tag">Incident Management</span><span class="tag">Change Management</span><span class="tag">Problem Management</span><span class="tag">SLA Management</span>
+            <span class="tag">Site-to-Site IPSec</span><span class="tag">Remote Access SSL VPN</span><span class="tag">GlobalProtect</span><span class="tag">Tunnel Troubleshooting</span><span class="tag">Access Tokens</span>
           </div>
         </div>
         <div class="skill-group">
-          <div class="g-label">Automation &amp; AI</div>
+          <div class="g-label" style="color:var(--pink);">Networking &amp; Protocols</div>
           <div class="tags">
-            <span class="tag">Ansible</span><span class="tag">Terraform</span><span class="tag">NetBox</span><span class="tag">AI-Assisted Incident Management</span><span class="tag">AIOps</span>
+            <span class="tag">TCP/IP</span><span class="tag">OSPF</span><span class="tag">BGP</span><span class="tag">Wireshark</span><span class="tag">Traffic Flow Diagnostics</span><span class="tag">DNS</span><span class="tag">DHCP</span><span class="tag">VLANs</span>
           </div>
         </div>
         <div class="skill-group">
-          <div class="g-label">Monitoring &amp; Cloud</div>
+          <div class="g-label" style="color:var(--orange);">IT Operations &amp; Automation</div>
           <div class="tags">
-            <span class="tag">Cisco ThousandEyes</span><span class="tag">Grafana</span><span class="tag">Prometheus</span><span class="tag">AWS</span><span class="tag">Microsoft Azure</span>
+            <span class="tag">ServiceNow ITSM</span><span class="tag">ITIL</span><span class="tag">AlgoSec Risk Simulation</span><span class="tag">Root Cause Analysis</span>
           </div>
         </div>
         <div class="skill-group">
-          <div class="g-label">Tools</div>
+          <div class="g-label" style="color:var(--up);">Observability &amp; Systems</div>
           <div class="tags">
-            <span class="tag">Active Directory</span><span class="tag">Azure AD</span><span class="tag">PowerShell</span><span class="tag">Python</span><span class="tag">Jira</span><span class="tag">Microsoft Visio</span>
+            <span class="tag">Splunk</span><span class="tag">SolarWinds</span><span class="tag">Dynatrace</span><span class="tag">Cisco ThousandEyes</span><span class="tag">Grafana</span><span class="tag">Prometheus</span><span class="tag">Active Directory</span><span class="tag">Azure AD</span><span class="tag">Python</span><span class="tag">PowerShell</span>
           </div>
         </div>
       </div>
@@ -302,14 +379,16 @@
   <section id="certifications">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Certifications</h2>
+        <h2>📜 Certifications &amp; alignment</h2>
       </div>
       <div class="cert-grid">
-        <div class="cert"><span class="dot"></span>Cisco Networking Academy — Networking Basics</div>
-        <div class="cert"><span class="dot"></span>Google IT Support Professional Certificate</div>
-        <div class="cert"><span class="dot"></span>PMP — Cengage</div>
-        <div class="cert"><span class="dot"></span>AI for Everyone — Coursera</div>
-        <div class="cert"><span class="dot"></span>Python Essentials — Coursera</div>
+        <div class="cert"><div class="name"><span class="dot"></span>Palo Alto Networks Certification Track — PCNSA / PCNSE blueprints</div><span class="chip degraded"><span class="dot"></span>Active preparation</span></div>
+        <div class="cert"><div class="name"><span class="dot"></span>Cisco Networking Academy — Networking Basics (CCNA Blueprint Mapping)</div></div>
+        <div class="cert"><div class="name"><span class="dot"></span>ITIL Foundation Framework — Blueprint Study</div></div>
+        <div class="cert"><div class="name"><span class="dot"></span>PMP Coursework — Cengage</div></div>
+        <div class="cert"><div class="name"><span class="dot"></span>Google IT Support Professional Certificate</div></div>
+        <div class="cert"><div class="name"><span class="dot"></span>Python Essentials — Coursera</div></div>
+        <div class="cert"><div class="name"><span class="dot"></span>AI for Everyone — Coursera</div></div>
       </div>
     </div>
   </section>
@@ -317,7 +396,7 @@
   <section id="education" style="border-bottom:none;">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Education</h2>
+        <h2>🎓 Education</h2>
       </div>
       <div class="edu-row">
         <div>
@@ -338,16 +417,56 @@
 
   <footer id="contact">
     <div class="wrap">
-      <h2>Let's talk about network infrastructure, security, or your next NOC/SOC hire.</h2>
+      <h2>📬 Let's talk about network infrastructure, security operations, or your next NOC/SOC hire.</h2>
       <div class="links">
-        <a href="mailto:gunnalatejaswi@gmail.com">gunnalatejaswi@gmail.com</a>
-        <a href="tel:2163571046">216-357-1046</a>
-        <a href="https://www.linkedin.com/in/durgatejaswig07" target="_blank">linkedin.com/in/durgatejaswig07</a>
-        <span>Columbus, OH</span>
+        <a href="mailto:gunnalatejaswi@gmail.com" id="email-link">✉️ gunnalatejaswi@gmail.com</a>
+        <a href="tel:2163571046">📞 216-357-1046</a>
+        <a href="https://www.linkedin.com/in/durgatejaswig07" target="_blank">🔗 linkedin.com/in/durgatejaswig07</a>
+        <span>📍 Columbus, OH</span>
+        <button id="copy-btn" style="margin-top:6px; background:transparent; border:1px solid var(--line); color:var(--text-dim); font-family:var(--mono); font-size:11px; padding:6px 12px; border-radius:100px; cursor:pointer; transition:border-color .15s, color .15s;">📋 Copy email</button>
       </div>
     </div>
-    <div class="wrap fine">Built as a single-file portfolio — open this .html in any browser, or host it on GitHub Pages / Netlify for a shareable link.</div>
+    <div class="wrap fine">Live at tejaswi0799.github.io/portfolio — update index.html in the GitHub repo whenever this content changes.</div>
   </footer>
+
+  <script>
+    const copyBtn = document.getElementById('copy-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('gunnalatejaswi@gmail.com');
+          copyBtn.textContent = '✅ Copied!';
+          copyBtn.style.borderColor = 'rgba(62,207,142,0.5)';
+          copyBtn.style.color = '#3ECF8E';
+          setTimeout(() => {
+            copyBtn.textContent = '📋 Copy email';
+            copyBtn.style.borderColor = '';
+            copyBtn.style.color = '';
+          }, 1800);
+        } catch (e) {
+          copyBtn.textContent = '✉️ gunnalatejaswi@gmail.com';
+        }
+      });
+    }
+
+    // Subtle fade-up entrance for sections as they scroll into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('section, footer').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(16px)';
+      el.style.transition = 'opacity .6s ease, transform .6s ease';
+      observer.observe(el);
+    });
+  </script>
 
 </body>
 </html>
