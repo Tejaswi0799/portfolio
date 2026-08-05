@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tejaswi Gunnala — IT Infrastructure &amp; Network Security Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0F1C;
+    --panel:#111A2C;
+    --panel-raised:#16213A;
+    --line: rgba(232,237,244,0.09);
+    --text:#E8EDF4;
+    --text-dim:#8D97AC;
+    --brand:#5B9DF9;
+    --up:#3ECF8E;
+    --degraded:#F5B942;
+    --down:#F16767;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--brand); color:#0A0F1C; }
+  a{ color:inherit; }
+
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  /* ---------- top status bar ---------- */
+  .statusbar{
+    border-bottom:1px solid var(--line);
+    background:rgba(10,15,28,0.85);
+    backdrop-filter: blur(8px);
+    position:sticky; top:0; z-index:50;
+  }
+  .statusbar .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:56px;
+  }
+  .statusbar .mark{
+    font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:0.02em;
+  }
+  .statusbar nav{ display:flex; gap:28px; font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-dim);}
+  .statusbar nav a{ text-decoration:none; transition:color .15s; }
+  .statusbar nav a:hover{ color:var(--text); }
+  @media (max-width:640px){ .statusbar nav{ display:none; } }
+
+  /* ---------- chip ---------- */
+  .chip{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.06em;
+    padding:4px 10px; border-radius:100px;
+    border:1px solid var(--line);
+  }
+  .chip .dot{ width:6px; height:6px; border-radius:50%; }
+  .chip.up{ color:var(--up); border-color:rgba(62,207,142,0.35); background:rgba(62,207,142,0.08); }
+  .chip.up .dot{ background:var(--up); box-shadow:0 0 8px var(--up); }
+  .chip.degraded{ color:var(--degraded); border-color:rgba(245,185,66,0.35); background:rgba(245,185,66,0.08); }
+  .chip.degraded .dot{ background:var(--degraded); box-shadow:0 0 8px var(--degraded); }
+
+  /* ---------- hero ---------- */
+  .hero{ padding:88px 0 56px; border-bottom:1px solid var(--line); }
+  .hero .kicker{ font-family:var(--mono); font-size:12px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:18px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .hero .kicker > *{ margin-right:12px; }
+  .hero h1{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(32px, 5vw, 52px);
+    line-height:1.08; letter-spacing:-0.01em;
+    max-width:900px;
+  }
+  .hero h1 .accent{ color:var(--brand); }
+  .hero p.sub{
+    margin-top:22px; max-width:640px; color:var(--text-dim); font-size:16.5px;
+  }
+  .hero .meta{
+    margin-top:32px; display:flex; gap:22px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:12.5px; color:var(--text-dim);
+  }
+  .hero .meta div{ margin-right:22px; }
+  .hero .meta span{ color:var(--text); }
+  .hero .cta-row{ margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:var(--body); font-weight:500; font-size:14px;
+    padding:11px 20px; border-radius:8px; text-decoration:none;
+    display:inline-block; transition: transform .15s ease, border-color .15s ease;
+  }
+  .btn.primary{ background:var(--brand); color:#06101F; }
+  .btn.primary:hover{ transform:translateY(-1px); }
+  .btn.ghost{ border:1px solid var(--line); color:var(--text); }
+  .btn.ghost:hover{ border-color:rgba(232,237,244,0.28); }
+
+  /* ---------- data strip ---------- */
+  .strip{ border-bottom:1px solid var(--line); padding:26px 0; }
+  .strip .wrap{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  @media (max-width:640px){ .strip .wrap{ grid-template-columns:repeat(2,1fr); } }
+  .stat .num{ font-family:var(--display); font-size:26px; font-weight:600; color:var(--text); }
+  .stat .label{ font-family:var(--mono); font-size:11px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px; }
+
+  /* ---------- section heading ---------- */
+  section{ padding:72px 0; border-bottom:1px solid var(--line); }
+  .sec-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:40px; flex-wrap:wrap; gap:10px; }
+  .sec-head h2{ font-family:var(--display); font-size:26px; font-weight:600; }
+  .sec-head .note{ font-family:var(--mono); font-size:12px; color:var(--text-dim); }
+
+  /* ---------- experience cards ---------- */
+  .cards{ display:flex; flex-direction:column; gap:18px; }
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:26px 28px;
+    transition:border-color .18s ease, background .18s ease;
+  }
+  .card:hover{ border-color:rgba(91,157,249,0.4); background:var(--panel-raised); }
+  .card-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+  .card h3{ font-family:var(--display); font-size:19px; font-weight:600; }
+  .card .role{ font-family:var(--mono); font-size:11.5px; color:var(--text-dim); margin-top:4px; }
+  .card ul.bullets{ margin-top:16px; list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .card ul.bullets li{ font-size:14px; color:var(--text-dim); padding-left:16px; position:relative; }
+  .card ul.bullets li::before{ content:"›"; position:absolute; left:0; color:var(--brand); font-family:var(--mono); }
+
+  /* ---------- skills ---------- */
+  .skill-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px 40px; }
+  @media (max-width:640px){ .skill-grid{ grid-template-columns:1fr; } }
+  .skill-group .g-label{ font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--brand); margin-bottom:10px; }
+  .skill-group .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{ font-family:var(--mono); font-size:11px; color:var(--text-dim); border:1px solid var(--line); padding:3px 9px; border-radius:100px; }
+
+  /* ---------- certifications ---------- */
+  .cert-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  @media (max-width:640px){ .cert-grid{ grid-template-columns:1fr; } }
+  .cert{
+    border:1px solid var(--line); border-radius:10px; padding:16px 18px;
+    font-size:14px; display:flex; align-items:center; gap:10px;
+  }
+  .cert .dot{ width:6px; height:6px; border-radius:50%; background:var(--brand); flex-shrink:0; }
+
+  /* ---------- education ---------- */
+  .edu-row{ display:flex; justify-content:space-between; padding:16px 0; border-top:1px solid var(--line); flex-wrap:wrap; gap:6px; }
+  .edu-row:first-child{ border-top:none; }
+  .edu-row .deg{ font-weight:600; font-size:15px; }
+  .edu-row .school{ color:var(--text-dim); font-size:13.5px; }
+  .edu-row .yr{ font-family:var(--mono); font-size:12.5px; color:var(--text-dim); }
+
+  /* ---------- footer ---------- */
+  footer{ padding:56px 0 72px; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
+  footer h2{ font-family:var(--display); font-size:26px; font-weight:600; max-width:440px; }
+  footer .links{ display:flex; flex-direction:column; gap:8px; font-family:var(--mono); font-size:13px; text-align:right; }
+  footer .links a{ text-decoration:none; color:var(--text-dim); }
+  footer .links a:hover{ color:var(--brand); }
+  @media (max-width:640px){ footer .links{ text-align:left; } }
+  .fine{ margin-top:40px; font-family:var(--mono); font-size:11px; color:var(--text-dim); }
+</style>
+</head>
+<body>
+
+  <div class="statusbar">
+    <div class="wrap">
+      <div class="mark">TG // 07</div>
+      <nav>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="wrap">
+      <div class="kicker">
+        <span class="chip up"><span class="dot"></span>Network status: Available</span>
+        <span>Columbus, OH · STEM OPT</span>
+      </div>
+      <h1>IT Infrastructure &amp; Network Security Analyst keeping enterprise operations <span class="accent">online, secure, and compliant.</span></h1>
+      <p class="sub">Experience supporting enterprise IT operations, network infrastructure, incident management, and security operations — skilled in ServiceNow, ITIL, firewall monitoring, IAM, VPN support, AI-assisted IT operations, and infrastructure automation. Seeking Network Infrastructure, NOC, or Network Security Analyst roles.</p>
+      <div class="meta">
+        <div><span>Currently:</span> ReliaQuest, Tampa, FL</div>
+        <div><span>Prior:</span> HCL Technologies, Hyderabad, India</div>
+        <div><span>MS Info Systems</span> — Trine University</div>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="#experience">View experience</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="wrap">
+      <div class="stat"><div class="num">2</div><div class="label">Enterprise employers</div></div>
+      <div class="stat"><div class="num">6</div><div class="label">Core skill domains</div></div>
+      <div class="stat"><div class="num">5</div><div class="label">Certifications</div></div>
+      <div class="stat"><div class="num">1</div><div class="label">MS, Information Systems</div></div>
+    </div>
+  </div>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Professional experience</h2>
+      </div>
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-top">
+            <div>
+              <h3>IT Infrastructure &amp; Network Security Analyst</h3>
+              <div class="role">ReliaQuest · Tampa, FL · Aug 2024 – Present</div>
+            </div>
+            <span class="chip up"><span class="dot"></span>Current</span>
+          </div>
+          <ul class="bullets">
+            <li>Managed ITIL-based incident response and ServiceNow ticket workflows, ensuring SLA compliance and timely resolution of enterprise infrastructure incidents.</li>
+            <li>Leveraged AI-assisted monitoring and AIOps platforms to identify network anomalies, prioritize incidents, and improve operational visibility.</li>
+            <li>Supported Identity &amp; Access Management (IAM) by provisioning user access, MFA, VPN connectivity, and authentication requests.</li>
+            <li>Assisted with infrastructure automation using Ansible, Terraform, and NetBox to streamline configuration management processes.</li>
+            <li>Monitored enterprise network performance using Cisco ThousandEyes, Grafana, and Prometheus to support root cause analysis and performance optimization.</li>
+            <li>Collaborated with infrastructure and security teams on vulnerability remediation, change management, and technical documentation.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div>
+              <h3>Network Security Support Analyst</h3>
+              <div class="role">HCL Technologies · Hyderabad, India · Oct 2021 – Aug 2022</div>
+            </div>
+            <span class="chip degraded"><span class="dot"></span>Prior role</span>
+          </div>
+          <ul class="bullets">
+            <li>Monitored Palo Alto and Fortinet firewall status and analyzed network traffic anomalies.</li>
+            <li>Administered ServiceNow for incident tickets, user access requests, and SLA tracking.</li>
+            <li>Provisioned secure access tokens and supported Cisco VPN connectivity.</li>
+            <li>Collaborated with infrastructure teams to troubleshoot Tier 1 network connectivity issues.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Core skills</h2>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-group">
+          <div class="g-label">Networking</div>
+          <div class="tags">
+            <span class="tag">TCP/IP</span><span class="tag">DNS</span><span class="tag">DHCP</span><span class="tag">LAN/WAN</span><span class="tag">VLAN</span><span class="tag">VPN</span><span class="tag">Routing &amp; Switching</span><span class="tag">Network Monitoring</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="g-label">Network Security</div>
+          <div class="tags">
+            <span class="tag">Palo Alto</span><span class="tag">Fortinet</span><span class="tag">Cisco VPN</span><span class="tag">Firewall Monitoring</span><span class="tag">IAM</span><span class="tag">MFA</span><span class="tag">Zero Trust</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="g-label">IT Operations</div>
+          <div class="tags">
+            <span class="tag">ServiceNow</span><span class="tag">ITIL</span><span class="tag">Incident Management</span><span class="tag">Change Management</span><span class="tag">Problem Management</span><span class="tag">SLA Management</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="g-label">Automation &amp; AI</div>
+          <div class="tags">
+            <span class="tag">Ansible</span><span class="tag">Terraform</span><span class="tag">NetBox</span><span class="tag">AI-Assisted Incident Management</span><span class="tag">AIOps</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="g-label">Monitoring &amp; Cloud</div>
+          <div class="tags">
+            <span class="tag">Cisco ThousandEyes</span><span class="tag">Grafana</span><span class="tag">Prometheus</span><span class="tag">AWS</span><span class="tag">Microsoft Azure</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="g-label">Tools</div>
+          <div class="tags">
+            <span class="tag">Active Directory</span><span class="tag">Azure AD</span><span class="tag">PowerShell</span><span class="tag">Python</span><span class="tag">Jira</span><span class="tag">Microsoft Visio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Certifications</h2>
+      </div>
+      <div class="cert-grid">
+        <div class="cert"><span class="dot"></span>Cisco Networking Academy — Networking Basics</div>
+        <div class="cert"><span class="dot"></span>Google IT Support Professional Certificate</div>
+        <div class="cert"><span class="dot"></span>PMP — Cengage</div>
+        <div class="cert"><span class="dot"></span>AI for Everyone — Coursera</div>
+        <div class="cert"><span class="dot"></span>Python Essentials — Coursera</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Education</h2>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="deg">Master of Science, Information Systems</div>
+          <div class="school">Trine University, USA</div>
+        </div>
+        <div class="yr">2024</div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="deg">Bachelor of Information Systems</div>
+          <div class="school">VJIT, India</div>
+        </div>
+        <div class="yr">2021</div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+      <h2>Let's talk about network infrastructure, security, or your next NOC/SOC hire.</h2>
+      <div class="links">
+        <a href="mailto:gunnalatejaswi@gmail.com">gunnalatejaswi@gmail.com</a>
+        <a href="tel:2163571046">216-357-1046</a>
+        <a href="https://www.linkedin.com/in/durgatejaswig07" target="_blank">linkedin.com/in/durgatejaswig07</a>
+        <span>Columbus, OH</span>
+      </div>
+    </div>
+    <div class="wrap fine">Built as a single-file portfolio — open this .html in any browser, or host it on GitHub Pages / Netlify for a shareable link.</div>
+  </footer>
+
+</body>
+</html>
